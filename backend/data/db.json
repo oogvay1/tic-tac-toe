@@ -1,0 +1,28 @@
+{
+	"family": [
+		{
+			"message": "salom",
+			"room": "family"
+		},
+		{
+			"message": "he qonday",
+			"room": "family"
+		}
+	],
+	"work": [
+		{
+			"message": "qaley bolla",
+			"room": "work"
+		},
+		{
+			"message": "yo Oybek nma gap",
+			"room": "work"
+		}
+	],
+	"group": [
+		{
+			"message": "yo Oybek nma gap",
+			"room": "group"
+		}
+	]
+}
