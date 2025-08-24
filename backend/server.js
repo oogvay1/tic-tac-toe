@@ -2,41 +2,51 @@ import express from "express";
 import { createServer } from "http";
 import { Server } from "socket.io";
 import fs from "fs/promises"
+import cors from "cors";
 
 const app = express();
 const server = createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: "http://localhost:5173",
+        origin: "*",
         methods: ["GET", "POST"]
     }
 });
 
-async function readFile(room, message) {
-    const messages = JSON.parse(await fs.readFile('./data/db.json', "utf8"));
+app.use(cors());
 
-    messages[room].push({ message, room });
+app.get('/messages', (_, res) => {
+    res.send('salom')
+});
 
-    await fs.writeFile('./data/db.json', JSON.stringify(messages, null, "\t"));
-    
-    return messages
+app.get('/users', async (_, res) => {
+
+    const users = JSON.parse(await fs.readFile("./data/db.json", "utf-8"));
+
+    res.send(users);
+});
+
+app.listen(4999);
+
+async function getUser(name, id) {
+    const users = JSON.parse(await fs.readFile("./data/db.json", "utf-8"));
+
+    users.push({ name, id });
+
+    await fs.writeFile('./data/db.json', JSON.stringify(users, null, "\t"));
 }
 
-io.on("connection", (socket) => {
+
+io.on("connection", async (socket) => {
     console.log("user connected:", socket.id);
 
-    socket.on("join room", (roomName) => {
-        socket.join(roomName);
-    });
 
-    socket.on("chat message", ({ room, message }) => {
-        readFile(room, message);
-        console.log(readFile(room, message));
+    socket.on('new user', ({ name, id }) => {
 
-        io.to(room).emit("chat message", { message, from: socket.id });
+        getUser(name, id);
     });
 });
 
-server.listen(3000, () => {
-    console.log("Server running on http://localhost:3000");
+server.listen(3978, () => {
+    console.log("Server running");
 });

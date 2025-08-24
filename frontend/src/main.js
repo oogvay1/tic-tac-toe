@@ -1,36 +1,59 @@
-const ul = document.querySelector("ul");
-const input = document.getElementById("input");
-const form = document.querySelector("form");
+const socket = io("http://localhost:3978");
 
-const socket = io("http://localhost:3000");
+const section = document.getElementById('section');
+const withFriend = document.getElementById("friend");
 
-let currentRoom = "group";
+withFriend.onclick = () => {
 
-document.getElementById("family").onclick = () => {
-  socket.emit("join room", "family");
-  currentRoom = "family";
-};
+  section.innerHTML = '';
 
-document.getElementById("work").onclick = () => {
-  socket.emit("join room", "work");
-  currentRoom = "work";
-};
+  section.innerHTML = `
+    <div class="inputsContainer">
+      <ul></ul>
 
-document.getElementById("group").onclick = () => {
-  socket.emit("join room", "group");
-  currentRoom = "group";
-};
+      <input id="inputEmail" type="text" placeholder="Enter your name">
+    </div>
+  `
 
-socket.on("chat message", ({ message, from }) => {
-  const li = document.createElement("li");
-  li.textContent = `${from}: ${message}`;
-  ul.appendChild(li);
-});
+  const input = document.getElementById('inputEmail');
+  input.onkeyup = (e) => {
 
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  if (input.value) {
-    socket.emit("chat message", { room: currentRoom, message: input.value });
-    input.value = "";
+    if (e.key == 'Enter') {
+
+      if (input.value !== '') {
+        socket.emit('new user', { name: input.value, id: new Date().getTime() });
+
+        getUsers();
+        input.value = '';
+      }
+    };
   }
-});
+
+}
+
+async function getUsers() {
+
+  try {
+
+    const res = await fetch('http://localhost:4999/users');
+
+    const data = await res.json();
+
+    renderUser(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+function renderUser(data) {
+
+  const ul = document.querySelector('ul');
+
+  for (const user of data) {
+
+    const li = document.createElement('li');
+    li.textContent = user.name;
+
+    ul.appendChild(li);
+  } 
+}
