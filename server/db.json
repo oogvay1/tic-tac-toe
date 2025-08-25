@@ -1,0 +1,47 @@
+{
+  "users": [
+    {
+      "id": "6bVVMjJxLXr4T8R-AAAb",
+      "name": "Elnur",
+      "status": "idle"
+    },
+    {
+      "id": "tOLr-ZKO0zXjljzSAAAv",
+      "name": "Elnur",
+      "status": "idle"
+    }
+  ],
+  "matches": [
+    {
+      "id": "1756109994199",
+      "players": [
+        {
+          "id": "yoHbR1pX_6VmtjLdAAAF",
+          "name": "Azimbek"
+        },
+        {
+          "id": "tOLr-ZKO0zXjljzSAAAv",
+          "name": "Elnur",
+          "status": "idle"
+        }
+      ],
+      "board": [
+        null,
+        null,
+        null,
+        null,
+        "X",
+        null,
+        null,
+        null,
+        null
+      ],
+      "turn": "tOLr-ZKO0zXjljzSAAAv",
+      "scores": {
+        "yoHbR1pX_6VmtjLdAAAF": 0,
+        "tOLr-ZKO0zXjljzSAAAv": 0
+      },
+      "round": 1
+    }
+  ]
+}

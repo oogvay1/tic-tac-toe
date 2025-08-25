@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/src/style.css">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <main id="main">
+
+    <section class="section" id="section">
+
+      <div class="container">
+
+        <div class="board" id="board">
+          <div class="cell" data-i="0"></div>
+          <div class="cell" data-i="1"></div>
+          <div class="cell" data-i="2"></div>
+          <div class="cell" data-i="3"></div>
+          <div class="cell" data-i="4"></div>
+          <div class="cell" data-i="5"></div>
+          <div class="cell" data-i="6"></div>
+          <div class="cell" data-i="7"></div>
+          <div class="cell" data-i="8"></div>
+        </div>
+
+      </div>
+
+      <div class="select">
+        <h1>Choose your play mode</h1>
+
+        <div class="buttons">
+          <button id="ai" disabled>With AI (coming soon)</button>
+          <button id="friend">With a friend</button>
+        </div>
+
+        <div class="status" id="status"></div>
+      </div>
+
+    </section>
+
+    <dialog id="modal">
+      <form method="dialog" class="modal-card" id="modalCard">
+        <h2>Play with a friend</h2>
+        <label>
+          Your name
+          <input id="nameInput" placeholder="Enter your name" required />
+        </label>
+
+        <div class="users">
+          <div class="users-header">
+            <span>Online users</span>
+            <button id="refreshUsers" type="button">Refresh</button>
+          </div>
+          <ul id="usersList"></ul>
+        </div>
+
+        <menu class="modal-actions">
+          <button value="cancel">Close</button>
+        </menu>
+      </form>
+    </dialog>
+
+  </main>
+
+</body>
+
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+<script type="module" src="src/main.js"></script>
+
+</html>

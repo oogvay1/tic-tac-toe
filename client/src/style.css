@@ -1,0 +1,183 @@
+:root {
+  --bg: #0f0f12;
+  --fg: #e9e9ef;
+  --muted: #9ba1a6;
+  --accent: #6ee7b7;
+  --card: #17171c;
+  --line: #2a2a31;
+}
+
+* {
+  box-sizing: border-box
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: Inter, system-ui, Segoe UI, Roboto, Arial, sans-serif
+}
+
+main {
+  display: grid;
+  place-items: center;
+  min-height: 100dvh;
+  padding: 24px
+}
+
+.section {
+  display: grid;
+  gap: 24px;
+  align-items: center;
+  grid-template-columns: 1fr 1fr;
+  max-width: 1100px;
+  width: 100%
+}
+
+.container {
+  display: flex;
+  justify-content: center
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 140px);
+  grid-template-rows: repeat(3, 140px);
+  gap: 8px
+}
+
+.cell {
+  width: 140px;
+  height: 140px;
+  display: grid;
+  place-items: center;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  font-weight: 900;
+  font-size: 90px;
+  line-height: 1;
+  cursor: pointer
+}
+
+.cell.disabled {
+  pointer-events: none;
+  opacity: .5
+}
+
+.select h1 {
+  margin: 0 0 12px
+}
+
+.buttons {
+  display: flex;
+  gap: 12px;
+  margin: 12px 0
+}
+
+button {
+  background: #1f1f26;
+  color: var(--fg);
+  border: 1px solid var(--line);
+  padding: 10px 14px;
+  border-radius: 12px;
+  cursor: pointer
+}
+
+button:disabled {
+  opacity: .6;
+  cursor: not-allowed
+}
+
+.status {
+  margin-top: 16px;
+  color: var(--muted)
+}
+
+dialog {
+  border: none;
+  border-radius: 16px;
+  max-width: 520px;
+  width: 90vw;
+  background: var(--card);
+  color: var(--fg)
+}
+
+.modal-card {
+  display: grid;
+  gap: 12px;
+  padding: 18px
+}
+
+.modal-card h2 {
+  margin: 0 0 6px
+}
+
+.modal-card input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: #1c1c22;
+  color: var(--fg)
+}
+
+.users {
+  border-top: 1px solid var(--line);
+  padding-top: 12px
+}
+
+.users-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px
+}
+
+#usersList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+  max-height: 220px;
+  overflow: auto
+}
+
+.user-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1a1a20;
+  border: 1px solid var(--line);
+  padding: 8px 10px;
+  border-radius: 10px
+}
+
+.user-item small {
+  color: var(--muted)
+}
+
+.user-item button {
+  padding: 6px 10px
+}
+
+.badge {
+  font-size: 12px;
+  color: var(--bg);
+  background: var(--accent);
+  padding: 2px 8px;
+  border-radius: 999px
+}
+
+@media (max-width: 900px) {
+  .section {
+    grid-template-columns: 1fr;
+  }
+
+  .board {
+    margin: 0 auto
+  }
+}
